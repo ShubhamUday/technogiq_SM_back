@@ -1,16 +1,20 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const cors = require("cors");
+import cors from "cors";
 
 
-const corsConfig = {
-  origin: true,
-  credentials: true,
-};
+// ✅ Allow CORS for all origins (Temporary fix)
+app.use(cors());
 
-app.use(cors(corsConfig));
-app.options('*', cors(corsConfig));
+// ✅ OR allow CORS for specific frontend origin
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://your-deployed-frontend.netlify.app"], // Add your frontend URL here
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 const adminRoutes = require("./routes/adminRoute");
 const teacherRoutes = require("./routes/teacherRoute");
