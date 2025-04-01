@@ -1,14 +1,16 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-import cors from "cors";
+const cors = require("cors");
 
-app.use(cors({
-  origin: "*", // Allow all origins (for development)
-  // origin: "https://your-frontend.netlify.app", // Allow only your frontend
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true, 
-}));
+
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
+
+app.use(cors(corsConfig));
+app.options('*', cors(corsConfig));
 
 const adminRoutes = require("./routes/adminRoute");
 const teacherRoutes = require("./routes/teacherRoute");
