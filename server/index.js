@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-import cors from "cors";
+const cors = require("cors");
 
 
 // ✅ Allow CORS for all origins (Temporary fix)
